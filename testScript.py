@@ -29,7 +29,7 @@ def scoreCalculate(data):
         if endEffectorJacobianHW2(q) is None:
             continue
         j_e = np.array(endEffectorJacobianHW2(q))
-        if abs(j_e - ts_j_e).all() < 0.001:
+        if (abs(j_e - ts_j_e) < 0.001).all():
             score_question1 += 1
     print("Question 1 score: {0:.2f}%".format(score_question1*10))
 
@@ -54,7 +54,7 @@ def scoreCalculate(data):
         tau = np.array(computeEffortHW2(q,w))
         if tau is None:
             continue
-        if abs(ts_tau - tau).all() < 0.001:
+        if (abs(ts_tau - tau) < 0.001).all():
             score_question3 += 1
     print("Question 3 score: {0:.2f}%".format(score_question3*10))
     
